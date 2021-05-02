@@ -21,7 +21,11 @@ public class Zoo {
         Meat meat = new Meat(10, "Мясо");
         Grass grass = new Grass(5, "Трава");
 
-        Worker.feed(sheep, grass);
+        try {
+            Worker.feed(sheep, grass);
+        } catch (WrongFoodException e) {
+            System.out.println(e.getMessage());
+        }
         try {
             Worker.feed(sheep, meat);
         } catch (WrongFoodException e) {
@@ -35,7 +39,11 @@ public class Zoo {
             System.out.println(e.getMessage());
         }
 
-        Worker.feed(fox, meat);
+        try {
+            Worker.feed(fox, meat);
+        } catch (WrongFoodException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(Worker.getVoice(fox));
 
         lion.run();
@@ -47,17 +55,21 @@ public class Zoo {
 
         grassEatingAviary.addAnimal(sheep);
         grassEatingAviary.addAnimal(duck);
-        grassEatingAviary.removeAnimal(sheep);
+//      grassEatingAviary.removeAnimal(sheep);
+        meatEatingAviary.addAnimal(fox);
+        grassEatingAviary.addAnimal(fish);
+        grassEatingAviary.removeAnimal("Dummy");
+        meatEatingAviary.addAnimal(lion);
+        meatEatingAviary.removeAnimal(lion);
 
-        try {
-            grassEatingAviary.addAnimal(duck);
+        if (grassEatingAviary.getAnimal("Овца обыкновенная") != null)
+            System.out.println(grassEatingAviary.getAnimal("Овца обыкновенная").getName() + " есть в вольере");
+        else
+            System.out.println("Овца обыкновенная нет в вольере");
 
-            grassEatingAviary.removeAnimal("Dummy");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println(grassEatingAviary.getAnimal("Овца обыкновенная").getName());
-
+        if (grassEatingAviary.getAnimal("Лев обычный") != null)
+            System.out.println(grassEatingAviary.getAnimal("Овца обыкновенная").getName() + " есть в вольере\n");
+        else
+            System.out.println("Лев обычный нет в вольере");
     }
 }

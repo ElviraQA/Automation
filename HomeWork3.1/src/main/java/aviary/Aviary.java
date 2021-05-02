@@ -1,7 +1,6 @@
 package aviary;
 
 import animals.Animal;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,12 +12,16 @@ public class Aviary<T extends Animal> {
         this.size = size;
     }
 
+    public AviarySize getAviarySize() {
+        return size;
+    }
+
     public void addAnimal(T animal) {
         String animalName = animal.getName();
-        if (animal.getAviarySize() != size)
-            throw new IllegalArgumentException(String.format("Этот вольера размер не подходит для животного %s", animalName));
+        if (animal.getAviarySize().getIntSize() > size.getIntSize())
+            System.out.printf("Вольер размера %s не подходит для животного %s размера %s\n", this.getAviarySize(), animalName, animal.getAviarySize());
         if (map.containsKey(animalName))
-            throw new IllegalArgumentException(String.format("Животное %s уже находится в вольере", animalName));
+            System.out.printf("Такое животное %s уже есть в вольере\n", animalName);
         else map.put(animalName, animal);
         System.out.printf("Животное %s добавленно в вольер\n", animalName);
     }
@@ -29,14 +32,18 @@ public class Aviary<T extends Animal> {
 
     public void removeAnimal(String animalName) {
         if (!map.containsKey(animalName))
-            throw new IllegalArgumentException(String.format("Животного %s нет в вольере", animalName));
-        else map.remove(animalName);
-        System.out.printf("Животное %s исключено из вольера\n", animalName);
+            System.out.printf("Такого животного %s нет в вольере\n", animalName);
+        else {
+            map.remove(animalName);
+            System.out.printf("Животное %s исключено из вольера\n", animalName);
+        }
     }
 
     public T getAnimal(String animalName) {
-        if (!map.containsKey(animalName))
-            throw new IllegalArgumentException(String.format("Животного %s нет в вольере", animalName));
-        else return map.get(animalName);
+        if (!map.containsKey(animalName)) {
+            return null;
+        } else {
+            return map.get(animalName);
+        }
     }
 }

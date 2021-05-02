@@ -1,7 +1,10 @@
 package animals;
 
 import aviary.AviarySize;
+import exception.WrongFoodException;
 import food.*;
+
+import java.util.Objects;
 
 public abstract class Animal {
 
@@ -13,8 +16,26 @@ public abstract class Animal {
         this.name = name;
         this.aviarySize = aviarySize;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return name == animal.name &&
+                name.equals(animal.name);
+    }
 
-    public abstract void eat(Food food);
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public abstract void eat(Food food) throws WrongFoodException;
 
     public AviarySize getAviarySize() {
         return aviarySize;
