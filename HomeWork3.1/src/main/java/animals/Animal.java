@@ -21,13 +21,12 @@ public abstract class Animal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return name == animal.name &&
-                name.equals(animal.name);
+        return name.equals(animal.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, name);
+        return Objects.hash(name);
     }
 
     @Override

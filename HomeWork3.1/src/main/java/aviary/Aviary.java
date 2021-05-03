@@ -22,8 +22,8 @@ public class Aviary<T extends Animal> {
             System.out.printf("Вольер размера %s не подходит для животного %s размера %s\n", this.getAviarySize(), animalName, animal.getAviarySize());
         if (map.containsKey(animalName))
             System.out.printf("Такое животное %s уже есть в вольере\n", animalName);
-        else map.put(animalName, animal);
-        System.out.printf("Животное %s добавленно в вольер\n", animalName);
+        else {map.put(animalName, animal);
+        System.out.printf("Животное %s добавленно в вольер\n", animalName);}
     }
 
     public void removeAnimal(T animal) {

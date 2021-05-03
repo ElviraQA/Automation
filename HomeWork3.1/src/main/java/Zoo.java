@@ -55,7 +55,6 @@ public class Zoo {
 
         grassEatingAviary.addAnimal(sheep);
         grassEatingAviary.addAnimal(duck);
-//      grassEatingAviary.removeAnimal(sheep);
         meatEatingAviary.addAnimal(fox);
         grassEatingAviary.addAnimal(fish);
         grassEatingAviary.removeAnimal("Dummy");
