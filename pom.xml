@@ -20,9 +20,4 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>HomeWork2</module>
-    </modules>
-
-
 </project>
